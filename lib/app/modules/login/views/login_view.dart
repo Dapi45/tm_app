@@ -20,7 +20,7 @@ class LoginView extends GetView<LoginController> {
               borderRadius: BorderRadius.circular(50), color: Colors.white),
           child: Row(
             children: [
-              // biru
+              // bagian biru
               !context.isPhone
                   ? Expanded(
                       child: Container(
@@ -55,7 +55,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ))
                   : const SizedBox(),
-              // putih
+              // bagian putih
               Expanded(
                 child: Container(
                   decoration: const BoxDecoration(
