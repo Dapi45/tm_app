@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:tm_app/app/utils/widget/mytask.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/style/AppColors.dart';
 import '../../../utils/widget/header.dart';
+import '../../../utils/widget/profilewidget.dart';
 import '../../../utils/widget/sidebar.dart';
 import '../controllers/profile_controller.dart';
 
@@ -67,21 +70,40 @@ class ProfileView extends GetView<ProfileController> {
                               ],
                             ),
                             const Spacer(),
-                            const Icon(
-                              Ionicons.notifications,
-                              color: AppColors.primaryText,
-                              size: 30,
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: const CircleAvatar(
-                                backgroundColor: Colors.amber,
-                                radius: 25,
-                                foregroundImage: NetworkImage(
-                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                            GestureDetector(
+                              onTap: () {
+                                Get.defaultDialog(
+                                  title: 'Sign Out',
+                                  content: const Text(
+                                      'Are you sure want to sign out?'),
+                                  cancel: ElevatedButton(
+                                    onPressed: () => Get.back(),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  confirm: ElevatedButton(
+                                    onPressed: () => Get.toNamed(Routes.LOGIN),
+                                    child: const Text('Sign Out'),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                children: const [
+                                  Text(
+                                    'Sign Out',
+                                    style: TextStyle(
+                                      color: AppColors.primaryText,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    Ionicons.log_out_outline,
+                                    color: AppColors.primaryText,
+                                    size: 30,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -90,7 +112,9 @@ class ProfileView extends GetView<ProfileController> {
                 // content / isi page / screen
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.all(50),
+                    padding: !context.isPhone
+                        ? const EdgeInsets.all(50)
+                        : const EdgeInsets.all(20),
                     margin: !context.isPhone
                         ? const EdgeInsets.all(10)
                         : const EdgeInsets.all(0),
@@ -99,6 +123,28 @@ class ProfileView extends GetView<ProfileController> {
                       borderRadius: !context.isPhone
                           ? BorderRadius.circular(50)
                           : BorderRadius.circular(30),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ProfileWidget(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'My Task',
+                          style: TextStyle(
+                              color: AppColors.primaryText, fontSize: 25),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.25, // 200,
+                          child: const MyTask(),
+                        ),
+                      ],
                     ),
                   ),
                 ),

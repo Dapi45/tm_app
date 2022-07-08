@@ -1,6 +1,8 @@
 # tm_app
 
-A new Flutter project.
+Flutter Task Management App untuk tugas Mobile Programming Semester 4.
+
+Beberapa widget mungkin overflowed karena menyesuaikan dengan hasil yang muncul di browser yang saya gunakan.
 
 ## Getting Started
 

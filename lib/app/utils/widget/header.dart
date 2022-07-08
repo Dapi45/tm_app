@@ -101,13 +101,13 @@ class header extends StatelessWidget {
                   SizedBox(
                     width: 5,
                   ),
+                  Icon(
+                    Ionicons.log_out_outline,
+                    color: AppColors.primaryText,
+                    size: 30,
+                  ),
                 ],
               ),
-            ),
-            const Icon(
-              Ionicons.log_out_outline,
-              color: AppColors.primaryText,
-              size: 30,
             ),
           ],
         ),
