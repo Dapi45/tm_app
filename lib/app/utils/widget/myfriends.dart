@@ -15,7 +15,7 @@ class MyFriend extends StatelessWidget {
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(0.0),
           child: Column(
             children: [
               Row(
@@ -26,44 +26,51 @@ class MyFriend extends StatelessWidget {
                         TextStyle(color: AppColors.primaryText, fontSize: 25),
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () => Get.toNamed(Routes.FRIENDS),
-                    child: const Text(
-                      'more',
-                      style:
-                          TextStyle(color: AppColors.primaryText, fontSize: 20),
-                    ),
-                  ),
-                  const Icon(
-                    Ionicons.chevron_forward,
-                    color: AppColors.primaryText,
-                  )
+                  !context.isPhone
+                      ? GestureDetector(
+                          onTap: () => Get.toNamed(Routes.FRIENDS),
+                          child: const Text(
+                            'more',
+                            style: TextStyle(
+                                color: AppColors.primaryText, fontSize: 20),
+                          ),
+                        )
+                      : const SizedBox(),
+                  !context.isPhone
+                      ? const Icon(
+                          Ionicons.chevron_forward,
+                          color: AppColors.primaryText,
+                        )
+                      : const SizedBox(),
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 12,
               ),
               SizedBox(
-                height: 400,
+                height: context.isPhone ? 200 : 200,
                 child: GridView.builder(
                     shrinkWrap: true,
                     itemCount: 8,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 40),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: context.isPhone ? 2 : 3,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 0),
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: const Image(
-                                image: NetworkImage(
-                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
-                                    scale: 3)),
+                              image: NetworkImage(
+                                'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
+                              ),
+                              width: 135,
+                            ),
                           ),
-                          const Spacer(),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           const Text(
                             'Daffi Fadillah',
                             style: TextStyle(color: AppColors.primaryText),
