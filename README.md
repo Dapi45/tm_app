@@ -34,5 +34,3 @@ samples, guidance on mobile development, and a full API reference.
 ⣿⣦⡀⣿⣿⣷⣶⣬⣍⣛⣛⣛⡛⠿⠿⠿⠛⠛⢛⣛⣉⣭⣤⣂⢜⠕⢑⣡⣴⣿                                        
 
 Donate: https://trakteer.id/Dapi/tip
-
-<h1>HEHEHEHEHEHEHEHEHE</h1>
