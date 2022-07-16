@@ -172,7 +172,7 @@ class FriendsView extends GetView<FriendsController> {
                           ),
                         ),
                         SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         const MyFriend()
                       ],

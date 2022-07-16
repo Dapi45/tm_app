@@ -48,13 +48,13 @@ class MyFriend extends StatelessWidget {
                 height: 12,
               ),
               SizedBox(
-                height: context.isPhone ? 200 : 200,
+                height: context.isPhone ? 350 : 250,
                 child: GridView.builder(
                     shrinkWrap: true,
                     itemCount: 8,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: context.isPhone ? 2 : 3,
-                        crossAxisSpacing: 20,
+                        crossAxisSpacing: 15,
                         mainAxisSpacing: 0),
                     itemBuilder: (context, index) {
                       return Column(
