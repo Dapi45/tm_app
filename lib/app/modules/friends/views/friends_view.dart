@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -171,7 +169,7 @@ class FriendsView extends GetView<FriendsController> {
                             },
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         const MyFriend()
