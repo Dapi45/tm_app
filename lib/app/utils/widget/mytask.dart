@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tm_app/app/utils/style/AppColors.dart';
 
 class MyTask extends StatelessWidget {
@@ -16,7 +17,7 @@ class MyTask extends StatelessWidget {
         shrinkWrap: true,
         children: [
           Container(
-            width: 400,
+            width: context.isPhone ? 300 : 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -88,7 +89,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: 400,
+            width: context.isPhone ? 300 : 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -160,7 +161,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: 400,
+            width: context.isPhone ? 300 : 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -232,7 +233,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: 400,
+            width: context.isPhone ? 300 : 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,

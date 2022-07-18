@@ -49,7 +49,7 @@ class ProfileWidget extends StatelessWidget {
               child: Column(
                 children: const [
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   ClipRRect(
                     child: CircleAvatar(
@@ -66,7 +66,7 @@ class ProfileWidget extends StatelessWidget {
                     'Daffi Fadillah',
                     style: TextStyle(
                       color: AppColors.primaryText,
-                      fontSize: 40,
+                      fontSize: 25,
                     ),
                   ),
                   Text(
