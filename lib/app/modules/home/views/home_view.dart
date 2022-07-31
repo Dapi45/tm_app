@@ -49,7 +49,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 15,
+                                width: 10,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                   Text(
-                                    'Manage task easy with friends',
+                                    'Manage task made easy',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: AppColors.primaryText,
@@ -77,7 +77,7 @@ class HomeView extends GetView<HomeController> {
                                 size: 30,
                               ),
                               const SizedBox(
-                                width: 15,
+                                width: 5,
                               ),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
@@ -95,7 +95,7 @@ class HomeView extends GetView<HomeController> {
                   Expanded(
                     child: Container(
                       padding: !context.isPhone
-                          ? const EdgeInsets.all(30)
+                          ? const EdgeInsets.all(50)
                           : const EdgeInsets.all(20),
                       margin: !context.isPhone
                           ? const EdgeInsets.all(10)
@@ -121,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                                       fontSize: 25),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: 10,
                                 ),
                                 // My task
                                 MyTask(),

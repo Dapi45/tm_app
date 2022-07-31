@@ -48,14 +48,14 @@ class MyFriend extends StatelessWidget {
                 height: 12,
               ),
               SizedBox(
-                height: context.isPhone ? 350 : 250,
+                height: context.isPhone ? 190 : 250,
                 child: GridView.builder(
                     shrinkWrap: true,
                     itemCount: 8,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: context.isPhone ? 2 : 3,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 0),
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 10),
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -65,7 +65,7 @@ class MyFriend extends StatelessWidget {
                               image: NetworkImage(
                                 'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
                               ),
-                              width: 135,
+                              width: 130,
                             ),
                           ),
                           const SizedBox(

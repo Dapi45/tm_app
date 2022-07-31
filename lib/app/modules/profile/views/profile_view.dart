@@ -50,7 +50,7 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 15,
+                                width: 10,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,7 @@ class ProfileView extends GetView<ProfileController> {
                                     ),
                                   ),
                                   Text(
-                                    'Manage task easy with friends',
+                                    'Manage task made easy',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: AppColors.primaryText,
@@ -89,18 +89,31 @@ class ProfileView extends GetView<ProfileController> {
                                   );
                                 },
                                 child: Row(
-                                  children: const [
-                                    Text(
-                                      'Sign Out',
-                                      style: TextStyle(
-                                        color: AppColors.primaryText,
-                                        fontSize: 16,
-                                      ),
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: const [
+                                        Text(
+                                          'Sign',
+                                          style: TextStyle(
+                                            color: AppColors.primaryText,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Out',
+                                          style: TextStyle(
+                                            color: AppColors.primaryText,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Ionicons.log_out_outline,
                                       color: AppColors.primaryText,
                                       size: 30,
@@ -131,19 +144,16 @@ class ProfileView extends GetView<ProfileController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const ProfileWidget(),
-                          const SizedBox(
-                            height: 20,
-                          ),
                           const Text(
                             'My Task',
                             style: TextStyle(
                                 color: AppColors.primaryText, fontSize: 25),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           SizedBox(
-                            height: Get.height * 0.26, // 200,
+                            height: Get.height * 0.27, // 200,
                             child: const MyTask(),
                           ),
                         ],

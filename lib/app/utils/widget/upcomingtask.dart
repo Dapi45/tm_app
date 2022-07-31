@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../style/AppColors.dart';
 
@@ -25,14 +26,14 @@ class UpcomingTask extends StatelessWidget {
               height: 15,
             ),
             SizedBox(
-              height: 400,
+              height: context.isPhone ? 170 : 400,
               child: ListView(
                 clipBehavior: Clip.antiAlias,
                 // scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: [
                   Container(
-                    height: 200,
+                    height: context.isPhone ? 160 : 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.cardBg,

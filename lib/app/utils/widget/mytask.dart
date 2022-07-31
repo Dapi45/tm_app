@@ -17,7 +17,7 @@ class MyTask extends StatelessWidget {
         shrinkWrap: true,
         children: [
           Container(
-            width: context.isPhone ? 300 : 400,
+            width: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -89,7 +89,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: context.isPhone ? 300 : 400,
+            width: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -161,7 +161,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: context.isPhone ? 300 : 400,
+            width: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
@@ -233,7 +233,7 @@ class MyTask extends StatelessWidget {
             ),
           ),
           Container(
-            width: context.isPhone ? 300 : 400,
+            width: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.cardBg,
