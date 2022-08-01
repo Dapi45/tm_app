@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:tm_app/app/data/controller/auth_controller.dart';
 import 'package:tm_app/app/utils/style/AppColors.dart';
 import 'package:tm_app/app/utils/widget/header.dart';
 import 'package:tm_app/app/utils/widget/myfriends.dart';
@@ -11,6 +12,7 @@ import '../controllers/friends_controller.dart';
 
 class FriendsView extends GetView<FriendsController> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  final authCon = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,57 +37,96 @@ class FriendsView extends GetView<FriendsController> {
                       ? const header()
                       : Container(
                           padding: const EdgeInsets.all(20),
-                          child: Row(
+                          child: Column(
                             children: [
-                              IconButton(
-                                onPressed: () {
-                                  _drawerKey.currentState!.openDrawer();
-                                },
-                                icon: const Icon(
-                                  Icons.menu,
-                                  color: AppColors.primaryText,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    'Task Management',
-                                    style: TextStyle(
-                                      fontSize: 20,
+                              Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _drawerKey.currentState!.openDrawer();
+                                    },
+                                    icon: const Icon(
+                                      Icons.menu,
                                       color: AppColors.primaryText,
                                     ),
                                   ),
-                                  Text(
-                                    'Manage task made easy',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: AppColors.primaryText,
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        'Task Management',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: AppColors.primaryText,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Manage task made easy',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: AppColors.primaryText,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  const Icon(
+                                    Ionicons.notifications,
+                                    color: AppColors.primaryText,
+                                    size: 30,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: const CircleAvatar(
+                                      backgroundColor: Colors.amber,
+                                      radius: 25,
+                                      foregroundImage: NetworkImage(
+                                          'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
                                     ),
                                   ),
                                 ],
                               ),
-                              const Spacer(),
-                              const Icon(
-                                Ionicons.notifications,
-                                color: AppColors.primaryText,
-                                size: 30,
-                              ),
                               const SizedBox(
-                                width: 5,
+                                height: 10,
                               ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: const CircleAvatar(
-                                  backgroundColor: Colors.amber,
-                                  radius: 25,
-                                  foregroundImage: NetworkImage(
-                                      'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
-                                ),
-                              ),
+                              context.isPhone
+                                  ? TextField(
+                                      onChanged: (value) =>
+                                          authCon.searchFriends(value),
+                                      controller:
+                                          authCon.searchFriendsController,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        contentPadding: const EdgeInsets.only(
+                                            left: 40, right: 10),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: const BorderSide(
+                                              color: Colors.white),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: const BorderSide(
+                                              color: AppColors.primaryBg),
+                                        ),
+                                        prefixIcon: const Icon(
+                                          Icons.search,
+                                          color: Colors.black,
+                                        ),
+                                        hintText: 'Search',
+                                      ),
+                                    )
+                                  : const SizedBox(),
                             ],
                           ),
                         ),
@@ -104,77 +145,102 @@ class FriendsView extends GetView<FriendsController> {
                             ? BorderRadius.circular(50)
                             : BorderRadius.circular(30),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'People You May Know',
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: AppColors.primaryText,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 200,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              clipBehavior: Clip.antiAlias,
-                              itemCount: 10,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: const Image(
-                                          image: NetworkImage(
-                                            'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
-                                          ),
-                                        ),
-                                      ),
-                                      const Positioned(
-                                        bottom: 10,
-                                        left: 50,
-                                        child: Text(
-                                          'Daffi Fadillah',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        right: 0,
-                                        child: SizedBox(
-                                          height: 36,
-                                          width: 36,
-                                          child: ElevatedButton(
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              padding: EdgeInsets.zero,
-                                              shape: RoundedRectangleBorder(
+                      child: Obx(
+                        () => authCon.hasilPencarian.isEmpty
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'People You May Know',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: AppColors.primaryText,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 200,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      clipBehavior: Clip.antiAlias,
+                                      itemCount: 10,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(50),
+                                                child: const Image(
+                                                  image: NetworkImage(
+                                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                            child: const Icon(
-                                                Ionicons.add_circle_outline),
+                                              const Positioned(
+                                                bottom: 10,
+                                                left: 50,
+                                                child: Text(
+                                                  'Daffi Fadillah',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0,
+                                                right: 0,
+                                                child: SizedBox(
+                                                  height: 36,
+                                                  width: 36,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      padding: EdgeInsets.zero,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                      ),
+                                                    ),
+                                                    child: const Icon(Ionicons
+                                                        .add_circle_outline),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ),
-                                    ],
+                                        );
+                                      },
+                                    ),
                                   ),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const MyFriend()
-                        ],
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  const MyFriend()
+                                ],
+                              )
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: authCon.hasilPencarian.length,
+                                itemBuilder: (context, index) => ListTile(
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image(
+                                      image: NetworkImage(authCon
+                                          .hasilPencarian[index]['photo']),
+                                    ),
+                                  ),
+                                  title: Text(
+                                      authCon.hasilPencarian[index]['name']),
+                                  subtitle: Text(
+                                      authCon.hasilPencarian[index]['email']),
+                                  trailing: Icon(Ionicons.add),
+                                ),
+                              ),
                       ),
                     ),
                   ),
