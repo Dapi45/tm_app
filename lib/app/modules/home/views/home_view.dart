@@ -131,8 +131,8 @@ class HomeView extends GetView<HomeController> {
                           !context.isPhone
                               ? Expanded(
                                   child: Row(
-                                    children: const [
-                                      UpcomingTask(),
+                                    children: [
+                                      const UpcomingTask(),
                                       MyFriend(),
                                     ],
                                   ),

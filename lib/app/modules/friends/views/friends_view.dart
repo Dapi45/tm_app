@@ -8,6 +8,7 @@ import 'package:tm_app/app/utils/widget/header.dart';
 import 'package:tm_app/app/utils/widget/myfriends.dart';
 import 'package:tm_app/app/utils/widget/sidebar.dart';
 
+import '../../../utils/widget/peopleYouMayKnow.dart';
 import '../controllers/friends_controller.dart';
 
 class FriendsView extends GetView<FriendsController> {
@@ -157,76 +158,16 @@ class FriendsView extends GetView<FriendsController> {
                                       color: AppColors.primaryText,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 200,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      clipBehavior: Clip.antiAlias,
-                                      itemCount: 10,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: const Image(
-                                                  image: NetworkImage(
-                                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg',
-                                                  ),
-                                                ),
-                                              ),
-                                              const Positioned(
-                                                bottom: 10,
-                                                left: 50,
-                                                child: Text(
-                                                  'Daffi Fadillah',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                right: 0,
-                                                child: SizedBox(
-                                                  height: 36,
-                                                  width: 36,
-                                                  child: ElevatedButton(
-                                                    onPressed: () {},
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      padding: EdgeInsets.zero,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                      ),
-                                                    ),
-                                                    child: const Icon(Ionicons
-                                                        .add_circle_outline),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  const MyFriend()
+                                  PeopleYouMayKnow(),
+                                  MyFriend()
                                 ],
                               )
                             : ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: authCon.hasilPencarian.length,
                                 itemBuilder: (context, index) => ListTile(
+                                  onTap: () => authCon.addFriends(
+                                      authCon.hasilPencarian[index]['email']),
                                   leading: ClipRRect(
                                     borderRadius: BorderRadius.circular(50),
                                     child: Image(
@@ -238,7 +179,7 @@ class FriendsView extends GetView<FriendsController> {
                                       authCon.hasilPencarian[index]['name']),
                                   subtitle: Text(
                                       authCon.hasilPencarian[index]['email']),
-                                  trailing: Icon(Ionicons.add),
+                                  trailing: const Icon(Ionicons.add),
                                 ),
                               ),
                       ),
