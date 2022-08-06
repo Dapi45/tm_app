@@ -46,7 +46,7 @@ class MyFriend extends StatelessWidget {
               height: 12,
             ),
             SizedBox(
-              height: 400,
+              height: 150,
               child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 stream: authCon.streamFriends(),
                 builder: (context, snapshot) {
@@ -80,11 +80,16 @@ class MyFriend extends StatelessWidget {
                           return Column(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(20),
                                 child: Image(
                                   image: NetworkImage(data!['photo']),
-                                  width: 120,
+                                  height: Get.width * 0.35,
+                                  width: Get.width * 0.4,
+                                  fit: BoxFit.cover,
                                 ),
+                              ),
+                              const SizedBox(
+                                height: 5,
                               ),
                               Text(
                                 data['name'],

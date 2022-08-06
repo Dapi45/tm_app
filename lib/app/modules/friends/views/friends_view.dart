@@ -19,6 +19,7 @@ class FriendsView extends GetView<FriendsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _drawerKey,
+      resizeToAvoidBottomInset: false,
       drawer: const SizedBox(width: 150, child: SideBar()),
       backgroundColor: AppColors.primaryBg,
       body: SafeArea(
