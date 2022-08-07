@@ -1,3 +1,4 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -122,83 +123,92 @@ class TaskView extends GetView<TaskController> {
                               clipBehavior: Clip.antiAlias,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: AppColors.cardBg,
-                                  ),
-                                  margin: const EdgeInsets.all(10),
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: const CircleAvatar(
-                                              backgroundColor: Colors.amber,
-                                              radius: 20,
-                                              foregroundImage: NetworkImage(
-                                                  'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                                return GestureDetector(
+                                  onLongPress: () {
+                                    addEditTask(
+                                        context: context,
+                                        type: 'Update',
+                                        docId: '2022-08-07T21:23:24.142986');
+                                  },
+                                  child: Container(
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColors.cardBg,
+                                    ),
+                                    margin: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: const CircleAvatar(
+                                                backgroundColor: Colors.amber,
+                                                radius: 20,
+                                                foregroundImage: NetworkImage(
+                                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                                              ),
                                             ),
-                                          ),
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: const CircleAvatar(
-                                              backgroundColor: Colors.amber,
-                                              radius: 20,
-                                              foregroundImage: NetworkImage(
-                                                  'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: const CircleAvatar(
+                                                backgroundColor: Colors.amber,
+                                                radius: 20,
+                                                foregroundImage: NetworkImage(
+                                                    'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            height: 25,
-                                            width: 80,
-                                            color: AppColors.primaryBg,
-                                            child: const Center(
-                                              child: Text(
-                                                '100 %',
-                                                style: TextStyle(
-                                                  color: AppColors.primaryText,
+                                            const Spacer(),
+                                            Container(
+                                              height: 25,
+                                              width: 80,
+                                              color: AppColors.primaryBg,
+                                              child: const Center(
+                                                child: Text(
+                                                  '100 %',
+                                                  style: TextStyle(
+                                                    color:
+                                                        AppColors.primaryText,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Container(
-                                        height: 25,
-                                        width: 80,
-                                        color: AppColors.primaryBg,
-                                        child: const Center(
-                                          child: Text(
-                                            '10 / 10 Task',
-                                            style: TextStyle(
-                                              color: AppColors.primaryText,
+                                          ],
+                                        ),
+                                        const Spacer(),
+                                        Container(
+                                          height: 25,
+                                          width: 80,
+                                          color: AppColors.primaryBg,
+                                          child: const Center(
+                                            child: Text(
+                                              '10 / 10 Task',
+                                              style: TextStyle(
+                                                color: AppColors.primaryText,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const Text(
-                                        'Pemrograman Mobile',
-                                        style: TextStyle(
-                                            color: AppColors.primaryText,
-                                            fontSize: 20),
-                                      ),
-                                      const Text(
-                                        'Deadline 2 hari lagi',
-                                        style: TextStyle(
-                                            color: AppColors.primaryText,
-                                            fontSize: 15),
-                                      )
-                                    ],
+                                        const Text(
+                                          'Pemrograman Mobile',
+                                          style: TextStyle(
+                                              color: AppColors.primaryText,
+                                              fontSize: 20),
+                                        ),
+                                        const Text(
+                                          'Deadline 2 hari lagi',
+                                          style: TextStyle(
+                                              color: AppColors.primaryText,
+                                              fontSize: 15),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
@@ -218,23 +228,128 @@ class TaskView extends GetView<TaskController> {
         alignment: const Alignment(0.95, 0.95),
         child: FloatingActionButton.extended(
           onPressed: () {
-            Get.bottomSheet(
-              Container(
-                margin: context.isPhone
-                    ? EdgeInsets.zero
-                    : const EdgeInsets.only(left: 150, right: 150),
-                height: Get.height,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    color: Colors.white),
-              ),
-            );
+            addEditTask(context: context, type: 'Add', docId: '');
           },
           label: const Text('Add Task'),
           icon: const Icon(Ionicons.add),
+        ),
+      ),
+    );
+  }
+
+  addEditTask({BuildContext? context, String? type, String? docId}) {
+    Get.bottomSheet(
+      SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+          margin: context!.isPhone
+              ? EdgeInsets.zero
+              : const EdgeInsets.only(left: 150, right: 150),
+          // height: Get.height,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            color: Colors.white,
+          ),
+          child: Form(
+            key: controller.formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              children: [
+                Text(
+                  '$type Task',
+                  style: const TextStyle(
+                    color: AppColors.primaryText,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'Title',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  controller: controller.titleController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Cannot be empty';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                    hintText: 'Description',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  controller: controller.descriptionController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Cannot be empty';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DateTimePicker(
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Due Date',
+                  decoration: InputDecoration(
+                    hintText: 'Due Date',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  controller: controller.dueDateController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Cannot be empty';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ConstrainedBox(
+                  constraints:
+                      BoxConstraints.tightFor(width: Get.width, height: 40),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      controller.saveUpdateTask(
+                        type: type,
+                        titel: controller.titleController.text,
+                        description: controller.descriptionController.text,
+                        dueDate: controller.dueDateController.text,
+                        docId: docId,
+                      );
+                    },
+                    child: Text(type!),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
