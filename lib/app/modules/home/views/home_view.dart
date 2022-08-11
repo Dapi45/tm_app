@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:tm_app/app/utils/style/AppColors.dart';
 import 'package:tm_app/app/utils/widget/header.dart';
+import 'package:tm_app/app/utils/widget/peopleYouMayKnow.dart';
 import 'package:tm_app/app/utils/widget/sidebar.dart';
 
+import '../../../data/controller/auth_controller.dart';
 import '../../../utils/widget/myfriends.dart';
 import '../../../utils/widget/mytask.dart';
 import '../../../utils/widget/upcomingtask.dart';
@@ -13,6 +15,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  final authCon = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +84,11 @@ class HomeView extends GetView<HomeController> {
                               ),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: const CircleAvatar(
+                                child: CircleAvatar(
                                   backgroundColor: Colors.amber,
                                   radius: 25,
                                   foregroundImage: NetworkImage(
-                                      'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                                      authCon.auth.currentUser!.photoURL!),
                                 ),
                               ),
                             ],
@@ -113,18 +116,18 @@ class HomeView extends GetView<HomeController> {
                             height: Get.height * 0.4,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'My Task',
+                              children: [
+                                const Text(
+                                  'People You May Know',
                                   style: TextStyle(
                                       color: AppColors.primaryText,
                                       fontSize: 25),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 // My task
-                                MyTask(),
+                                PeopleYouMayKnow(),
                               ],
                             ),
                           ),
@@ -132,12 +135,26 @@ class HomeView extends GetView<HomeController> {
                               ? Expanded(
                                   child: Row(
                                     children: [
-                                      const UpcomingTask(),
+                                      MyTask(),
                                       MyFriend(),
                                     ],
                                   ),
                                 )
-                              : const UpcomingTask(),
+                              : Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'My Task',
+                                        style: TextStyle(
+                                            color: AppColors.primaryText,
+                                            fontSize: 25),
+                                      ),
+                                      MyTask(),
+                                    ],
+                                  ),
+                                ),
                         ],
                       ),
                     ),

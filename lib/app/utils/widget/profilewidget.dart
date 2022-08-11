@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tm_app/app/utils/style/AppColors.dart';
 import 'package:get/get.dart';
 
+import '../../data/controller/auth_controller.dart';
+
 class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({
-    Key? key,
-  }) : super(key: key);
+  final authC = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +13,14 @@ class ProfileWidget extends StatelessWidget {
       child: !context.isPhone
           ? Row(
               children: [
-                const Expanded(
+                Expanded(
                   flex: 1,
                   child: ClipRRect(
                     child: CircleAvatar(
                       backgroundColor: Colors.amber,
                       radius: 150,
-                      foregroundImage: NetworkImage(
-                          'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                      foregroundImage:
+                          NetworkImage(authC.auth.currentUser!.photoURL!),
                     ),
                   ),
                 ),
@@ -29,15 +29,15 @@ class ProfileWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Daffi Fadillah',
-                        style: TextStyle(
+                        authC.auth.currentUser!.displayName!,
+                        style: const TextStyle(
                             color: AppColors.primaryText, fontSize: 40),
                       ),
                       Text(
-                        'daffi.fadillah.ti.20@cic.ac.id',
-                        style: TextStyle(
+                        authC.auth.currentUser!.email!,
+                        style: const TextStyle(
                             color: AppColors.primaryText, fontSize: 16),
                       ),
                     ],
@@ -47,31 +47,31 @@ class ProfileWidget extends StatelessWidget {
             )
           : Center(
               child: Column(
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     height: 10,
                   ),
                   ClipRRect(
                     child: CircleAvatar(
                       backgroundColor: Colors.amber,
                       radius: 100,
-                      foregroundImage: NetworkImage(
-                          'https://pbs.twimg.com/profile_images/1539609458514358272/VeuA18MI_400x400.jpg'),
+                      foregroundImage:
+                          NetworkImage(authC.auth.currentUser!.photoURL!),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Daffi Fadillah',
-                    style: TextStyle(
+                    authC.auth.currentUser!.displayName!,
+                    style: const TextStyle(
                       color: AppColors.primaryText,
                       fontSize: 25,
                     ),
                   ),
                   Text(
-                    'daffi.fadillah.ti.20@cic.ac.id',
-                    style: TextStyle(
+                    authC.auth.currentUser!.email!,
+                    style: const TextStyle(
                       color: AppColors.primaryText,
                       fontSize: 16,
                     ),

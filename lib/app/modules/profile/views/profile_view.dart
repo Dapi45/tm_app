@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:tm_app/app/utils/widget/mytask.dart';
+import 'package:tm_app/app/utils/widget/peopleYouMayKnow.dart';
 
 import '../../../data/controller/auth_controller.dart';
 import '../../../utils/style/AppColors.dart';
@@ -143,9 +144,9 @@ class ProfileView extends GetView<ProfileController> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const ProfileWidget(),
+                          ProfileWidget(),
                           const Text(
-                            'My Task',
+                            'People You May Know',
                             style: TextStyle(
                                 color: AppColors.primaryText, fontSize: 25),
                           ),
@@ -154,7 +155,7 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                           SizedBox(
                             height: Get.height * 0.27, // 200,
-                            child: const MyTask(),
+                            child: PeopleYouMayKnow(),
                           ),
                         ],
                       ),
